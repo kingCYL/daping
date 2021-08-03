@@ -6,17 +6,7 @@ Thumbs.db
 node_modules
 
 # Dev/Build Artifacts
-/dist
-/dist/*
-/dist/debug
-/tests/e2e/videos/
-/tests/e2e/screenshots/
-/tests/unit/coverage/
-jsconfig.json
-
-#www
-/www
-/www/*
+dist
 
 # Local Env Files
 .env.local
@@ -40,7 +30,6 @@ yarn-error.log*
 /src/debug
 /public/debug
 wxdist/*
-www/
 
 # output
 output.js
@@ -50,5 +39,3 @@ output.js
 # vscode
 .vscode
 tempCodeRunnerFile.js
-# 热更新
-hot-update/
