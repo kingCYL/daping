@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jquery": true
+  },
+  "extends": ["plugin:vue/essential", "eslint:recommended"],
+  "plugins": ["vue"],
+  "rules": {
+    "indent": ["off", 1],//缩进风格
+    "space-in-parens": 0,//小括号里面要不要有空格
+    "no-trailing-spaces":1,//一行结束后面不要有空格
+    "func-call-spacing": 0,
+    "no-multi-spaces": 1,//不能用多余的空格
+    "no-irregular-whitespace": 1,//不能有不规则的空格
+    "generator-star-spacing": 0,//生成器函数*的前后空格
+    "no-debugger":0,
+    "space-before-function-paren": 0,//函数定义时括号前面要不要有空格
+    "no-unused-vars": [1, {
+      // 允许声明后未使用变量
+      "vars": "local",
+      // 参数不检查
+      "args": "none"
+    }],
+    "vue/no-unused-vars": 1,// vue模板中，声明后未使用变量
+    "no-undef": 1,//不能有未定义的变量
+    "no-use-before-define": 1,//未定义前不能使用
+    "no-useless-escape": 0,
+    "no-control-regex": 0,
+    "no-dupe-keys": 1,
+    "no-redeclare": 1,//禁止重复声明变量
+    "use-isnan": 1,//禁止比较时使用NaN，只能用isNaN()
+    "no-inner-declarations": 0,
+    "no-dupe-class-members": 0,
+    "no-empty":0,
+    "vue/no-dupe-keys": ["error", {
+      "groups": []
+    }],
+    "vue/no-use-v-if-with-v-for": ["error", {
+      "allowUsingIterationVar": false
+    }],
+    "vue/no-unused-components": ["error", {
+      "ignoreWhenBindingPresent": true
+    }]
+    
+  }
+}
