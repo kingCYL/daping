@@ -1,0 +1,48 @@
+八大算法：枚举、递推、递归、分治、贪心、试探法、动态迭代（规划）、模拟
+https://www.cnblogs.com/feng9exe/p/10371489.html
+https://zhuanlan.zhihu.com/p/428479862
+https://cloud.tencent.com/developer/article/1755432
+
+1. 枚举
+   穷举，穷尽列举
+   将问题的所有可能答案一一列举，根据判断条件判断此答案是否合适，一般用循环实现
+   确定枚举对象、枚举范围和判定条件。
+   逐一列举可能的解，验证每个解是否是问题的解。
+   例：百钱买百鸡、填写运算符
+   全买公鸡最多买20只，全买母鸡最多买33只，全买小鸡最多可以买300只(数量超过”百鸡“条件，所以从前两个入手)
+    let res = null
+    for (let i = 0; i <= 20; i++) { //枚举范围
+      for (let j = 0; j <= 33; j++) { //枚举范围
+        let num = 100 - i - j
+        if (i * 5 + j * 3 + num/3 === 100) { //判定条件
+          res = `${i}--${j}--${num}`
+          console.log(res)
+        }
+      }
+    }
+
+2.递推
+  从已知条件出发，逐步推算出问题的解
+  1.顺推法：从已知条件出发，逐步推算出要解决问题的方法。
+　2.逆推法：从已知结果出发，用迭代表达式逐步推算出问题开始的条件，即顺推法的逆过程。
+　经典运用：斐波那契数列（顺推法）第N项、银行存款（逆推法）、兔子繁殖
+  斐波那契数列：递推
+  function fn(n) {
+    let current = 0;
+    let next = 1;
+    let temp;//中介
+    for(let i = 0; i < n; i++) {
+        temp = current;
+        current = next;
+        next += temp;
+        // [current, next] = [next, current + next] ES6解构写法
+    }
+    return current;
+    // return next; ES6解构写法
+}
+  斐波那契数列优化：尾递归
+  （ function fn(n, current = 0, next = 1) {
+    if(n == 0) return current;//0
+    if(n == 1) return next;//1
+    return fn(n - 1, next, current + next);//尾调用
+}
