@@ -24,8 +24,8 @@ https://cloud.tencent.com/developer/article/1755432
 2.递推
   从已知条件出发，逐步推算出问题的解
   1.顺推法：从已知条件出发，逐步推算出要解决问题的方法。
-　2.逆推法：从已知结果出发，用迭代表达式逐步推算出问题开始的条件，即顺推法的逆过程。
-　经典运用：斐波那契数列（顺推法）第N项、银行存款（逆推法）、兔子繁殖
+  2.逆推法：从已知结果出发，用迭代表达式逐步推算出问题开始的条件，即顺推法的逆过程。
+  经典运用：斐波那契数列（顺推法）第N项、银行存款（逆推法）、兔子繁殖、leetcode70题：爬楼梯
   斐波那契数列：递推
   function fn(n) {
     let current = 0;
@@ -38,7 +38,6 @@ https://cloud.tencent.com/developer/article/1755432
         // [current, next] = [next, current + next] ES6解构写法
     }
     return current;
-    // return next; ES6解构写法
 }
   斐波那契数列优化：尾递归
   （ function fn(n, current = 0, next = 1) {
@@ -46,3 +45,32 @@ https://cloud.tencent.com/developer/article/1755432
     if(n == 1) return next;//1
     return fn(n - 1, next, current + next);//尾调用
 }
+  斐波那契数列优化:存储变量减少循环次数，类似闭包
+  function fib(n){
+    function fib_(n,a,b){
+      if(n== 0) return a
+      return fib_(n-1,b,a+b)//每次b赋值给a,避免重复计算
+    }
+    return fib_(n,0,1)
+  }
+
+3.递归
+  1.递归过程一般通过函数或子过程实现；
+  2.递归算法在函数或子过程的内部，直接或间接调用自己的算法
+  3.递归算法实际上是把问题转化为规模缩小了的同类问题的子问题，然后再递归调用函数或过程来表示问题的解
+
+  注意：必须有一个明确的递归结束条件；如果递归次数过多，容易造成栈溢出。
+  递归算法对常用的算法如普通循环等，运行效率较低；并且在递归调用的过程当中系统为每一层的返回点、局部量等开辟了栈来存储，递归太深，容易发生栈溢出
+
+  经典运用：汉诺塔问题、阶乘问题、树的遍历及相关操作
+  记住用函数尾调用优化
+  阶乘问题：
+  function tailFactiral(n,total){
+    if(n===1) return total
+    return tailFactiral(n-1,n*total)
+  }
+  function factorial(n){
+    return tailFactiral(n,1)
+  }
+
+4.分治
