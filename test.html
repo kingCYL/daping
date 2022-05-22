@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        .test {
+            /* width: 200px;
+            height: 0;
+            border-bottom: 100px solid #000;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent; */
+            width: 200px;
+            height: 200px;
+            background-color: #000;
+            transform: perspective(2em)rotateX(10deg)
+        }
+        /* .container {
+            padding-left: 100px;
+            padding-right: 160px;
+        }
+        
+        .container>div {
+            float: left;
+            height: 400px;
+        }
+        
+        .center {
+            width: 100%;
+            background-color: red;
+        }
+        
+        .left {
+            width: 100px;
+            margin-left: -100%;
+            position: relative;
+            right: 100px;
+            background-color: blue
+        }
+        
+        .right {
+            width: 160px;
+            margin-right: -160px;
+            background-color: yellow;
+        } */
+        
+        .container {
+            /* display: flex; */
+            /* flex-flow: row wrap;
+            align-content: space-between; */
+            /* display: list-item; */
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .left {
+            position: absolute;
+            width: 200px;
+            /* height: 100%; */
+            background-color: yellowgreen;
+        }
+        
+        .right {
+            margin-left: 200px;
+            background-color: red;
+            /* flex: 1;
+            flex-grow: 1; */
+        }
+        /* .container div {
+            width: 300px;
+            height: 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        } */
+        /* .center {
+            box-sizing: border-box;
+            width: 300px;
+            height: 400px;
+            border: 30px;
+            background-color: yellow;
+        } */
+        /* span {
+            width: 300px;
+            height: 400px;
+            background-color: yellow;
+        } */
+        
+        .parent {
+            display: flex;
+            width: 600px;
+        }
+        
+        .parent>div {
+            height: 100px;
+        }
+        
+        .item-1 {
+            width: 100px;
+            /* flex: 2 1 0%; */
+            /* flex: auto; */
+            background: blue;
+        }
+        /* 
+      
+        flex 简写对应下边的三个值
+        flex-grow: ;
+        flex-shrink: ;
+        flex-basis: ;
+
+        1. 不写  ===》 0，1，auto
+        2. flex：（非负数字）   ===》 （非负数字），1，0%      //例：flex：1
+        3. flex：auto ===》1，1，auto
+        4. flex：none ===》0，0，auto
+        5. flex：百分比/长度（带单位例：24px）===》1，1，百分比/长度（带单位例：24px）
+        6. flex：非负数字 ，百分比/长度（带单位例：24px）===> 非负数字 ,1,百分比/长度（带单位例：24px）
+        7. flex：非负数字，非负数字 ===》（非负数字），（非负数字），0%
+        
+
+          剩余空间分配规则：
+        flex-basis 规定的是子元素的基准值。所以是否溢出的计算与此属性息息相关。
+        flex-basis 规定的范围取决于 box-sizing,此处先抛开不论，单计算flex-basis的取值范围
+
+        主尺寸：项目（子元素的尺寸）
+        1、auto：首先检索该子元素的主尺寸，如果主尺寸不为 auto，则使用值采取主尺寸之值；如果也是 auto，则使用值为 content。
+        2、content：指根据该子元素的内容自动布局。有的用户代理没有实现取 content 值，等效的替代方案是 flex-basis 和主尺寸都取 auto
+        3、百分比：根据其包含块（即伸缩父容器）的主尺寸计算。如果包含块的主尺寸未定义（即父容器的主尺寸取决于子元素），则计算结果和设为 auto 一样。
+
+
+举例子：
+        基准值取 auto 的时候，根据规则基准值使用值是主尺寸值即 100px，故这 100px不会纳入剩余空间
+        基准值取 0% 的时候，是把该项目视为零尺寸的，故即便声明其尺寸为 140px，也并没有什么用形同虚设,被划分到剩余空间，由剩余空间根据规则确定尺寸
+        基准值取 具体数值（百分比/长度）的时候，主尺寸即为该百分比/长度，且不会纳入剩余空间（如果此时设置width，width形同虚设）
+
+         */
+        
+        .item-2 {
+            /* width: 200px; */
+            /* flex: 2 1 auto; */
+            /* flex: auto; */
+            flex: 1;
+            background: darkblue;
+        }
+        
+        .item-3 {
+            flex: 1 1 200px;
+            background: lightblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div class="test"></div> -->
+    <div class="container">
+        <div class="left">
+            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+            src="https://timgsa.b
+        </div>
+        <div class="right">yu
+            <!-- <div>
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+
+            </div> -->
+        </div>
+        <!-- <div>111</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> -->
+    </div>
+    <div class="parent">
+        <div class="item-1"></div>
+        <div class="item-2"></div>
+        <div class="item-3"></div>
+    </div>
+    <!-- <div class="center">
+        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+
+    </div> -->
+    <!-- <span><img
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597651590376&di=7bf0463defc244d87f2688188b7e060c&imgtype=0&src=http%3A%2F%2Faliyunzixunbucket.oss-cn-beijing.aliyuncs.com%2Fjpg%2F74ca91f6407538a23c87e48963ed03cc.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cp_100%2Fauto-orient%2C1%2Fquality%2Cq_90%2Fformat%2Cjpg%2Fwatermark%2Cimage_eXVuY2VzaGk%3D%2Ct_100"
+      alt=""></span> -->
+
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script>
+        let process = require('node');
+        var value = 1
+        Object.defineProperty(window, 'a', {
+                get() {
+                    // console.log(
+                    //     'zhlei=', value += 1
+                    // );
+                    return value += 1;
+                }
+            })
+            // console.log(a);
+            // console.log(a);
+        if (a === 2 && a === 3) {
+            // console.log('success', value)
+        }
+
+        // new Promise(() => {
+        //     new Promise((res, rej) => {
+        //         res(() => {
+        //             console.log(1);
+        //         })
+        //         rej('err')
+        //     }).then(() => {
+        //         console.log(2);
+        //     }, err => {
+        //         console.log(err);
+        //     })
+        // }).then(() => {
+        //     console.log(3);
+        // })
+
+        // new Promise(() => {
+        //     // console.log(4);
+        // }).then(() => {
+        //     console.log(5);
+        // })
+
+        // //以下代码将输出什么？14225 为什么这样输出？
+        // new Promise(() => {
+        //     new Promise((res, rej) => {
+        //         console.log(1);
+        //         res();
+        //     }).then(() => {
+        //         console.log(2); //为什么会输出两个2？
+        //     });
+        // }).then(() => {
+        //     console.log(3);
+        // })
+
+        // new Promise((res, rej) => {
+        //     console.log(4);
+        //     res()
+        // }).then(() => {
+        //     console.log(5);
+        // })
+
+
+
+        console.log(1);
+        setTimeout(() => {
+            console.log(2);
+            process.nextTick(() => {
+                console.log(3);
+            })
+            new Promise(res => {
+                console.log(4);
+                res();
+            }).then(() => {
+                console.log(5);
+            })
+        }, 0);
+        process.nextTick(() => {
+            console.log(6);
+        })
+        new Promise(res => {
+            console.log(7);
+            res();
+        }).then(() => {
+            console.log(8);
+        })
+
+        setTimeout(() => {
+            console.log(9);
+            process.nextTick(() => {
+                console.log(10);
+            })
+            new Promise(res => {
+                console.log(11);
+                res();
+            }).then(() => {
+                console.log(12);
+            })
+        }, 0);
+    </script>
+</body>
+
+</html>
