@@ -31,3 +31,9 @@ var reverseList = function(head) {
 
     return pre
 };
+
+
+1. 给定一组由abcd组成的字符串，分别输出abcd四个字母连续的最高次数
+2. 给定一组二进制，0/1翻转，输出最大连续长度
+3. 输入10进制，输出大写16进制
+
