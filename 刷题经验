@@ -1,0 +1,130 @@
+1. 1790. 仅执行一次字符串交换能否使两个字符串相等
+  判断不一致，则将index push进数组中
+  数组长度>2，终止push
+  此时得到2个index， 错位判断一下是否相等
+  相等则true，否则false
+  /**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+var areAlmostEqual = function (s1, s2) {
+  if (s1.length != s2.length) return false
+  if (s1 === s2) return true
+
+  let temp = []
+  for (let i = 0; i < s1.length; i++) {
+    if (s1[i] != s2[i]) {
+      temp.push(i)
+    }
+    if (temp.length > 2) return false
+  }
+
+  return s1[temp[0]] === s2[temp[1]] && s2[temp[0]] === s1[temp[1]]
+}
+
+2. 459. 重复的子字符串：给定一个非空的字符串 s ，检查是否可以通过由它的一个子串重复多次构成。
+  s+s后，去头去尾，取(1,-1)，得到str
+  判断str中是否有完整的s，有true，否则false
+  /**
+ * @param {string} s
+ * @return {boolean}
+ */
+var repeatedSubstringPattern = function(s) {
+    let str = s+s
+    return str.slice(1,-1).indexOf(s)>-1?true:false
+};
+
+3. 3. 无重复字符的最长子串:给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+  （1）滑动窗口
+      前后指针，出现不相等则向后滑动窗口，直至结束(charAt() 方法可返回指定位置的字符。)
+    var lengthOfLongestSubstring = function(str) {
+      if(str.length<=1) return str.length
+      let left=0,right=1,temp,max=0
+      while(right<str.length){
+        temp = str.slice(left,right)
+        if(temp.indexOf(str.charAt(right))>-1){
+          left ++
+          continue
+        }else{
+          right ++ 
+        }
+        if(right-left)>max {
+          max = right -left
+        }
+      }
+
+      return max
+};
+(2) 利用 Set 去重特性
+    维护一个数组，用于存储连续的不同字符，并存储最大长度
+    当有重复项要推入数组时，从头开始删除重复字符，直至不存在重复字符后，push进去、
+    /**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    if(str.length<=1) return str.length
+    let set = new Set(),left=0,right=0,max=0
+    while(right<srt.length){
+      if(!set.has(s[right])){
+        set.add(s[right])
+        max = Math.max(max,set.size)
+      }else{
+        while(set.has(s[right])){
+          set.delete(s[left])
+          left ++
+        }
+        set.add(s[right])
+      }
+      right ++
+    }
+  return max
+};
+
+4. 205. 同构字符串
+输入：s = "egg", t = "add"
+输出：true
+方法一：两个Map映射两个数组相同位置的字符，只要一个不相等，返回false
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+  if(s.length!=t.length) return false
+
+  const { length } = s;
+  const sMap = new Map();
+  const tMap = new Map();
+
+  for (let i = 0; i < length; i++) {
+    const sValue = sMap.get(s[i]);
+    const tValue = tMap.get(t[i]);
+    if ((sValue && sValue !== t[i]) || (tValue && tValue !== s[i])) {
+      return false;
+    }
+    sMap.set(s[i], t[i]);
+    tMap.set(t[i], s[i]);
+  }
+  return true;
+};
+方法二：两个Map映射两个数组的index，只要一个index不相等，返回false
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+  if (s.length != t.length) return false
+ let S= new Map(),T=new Map()
+
+ for (let i = 0; i <s.length,i++){
+  if(S.has(s[i]) || T.has(t[i])){
+    if(S.get(s[i]) != T.get(t[i])) return false
+  }
+  S.set(s[i],i)
+  T.set(t[i],i)
+ }
+  return true;
+};
